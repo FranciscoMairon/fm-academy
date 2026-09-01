@@ -1,23 +1,60 @@
+.nav-brand,
+.footer-brand,
+.bio-logo-wrap {
+  overflow: visible;
+}
+
 .nav-brand img {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 auto;
   object-fit: contain !important;
-  object-position: center;
-  padding: 3px;
-  background: #050505;
+  object-position: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  clip-path: none !important;
 }
 
 .footer-brand img {
+  width: 64px !important;
+  height: 64px !important;
+  flex: 0 0 auto;
   object-fit: contain !important;
-  object-position: center;
-  padding: 3px;
-  background: #050505;
+  object-position: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  clip-path: none !important;
+}
+
+.bio-logo-wrap {
+  width: 138px;
+  height: 138px;
+  padding: 4px;
 }
 
 .bio-logo-wrap img {
-  width: 88%;
-  height: 88%;
-  margin: 6% auto;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
   object-fit: contain !important;
-  object-position: center;
-  border-radius: 0;
-  background: transparent;
+  object-position: center !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  clip-path: none !important;
+}
+
+@media (max-width: 680px) {
+  .nav-brand img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .bio-logo-wrap {
+    width: 116px;
+    height: 116px;
+  }
 }
