@@ -19,10 +19,10 @@ if [[ ! -x "${vinext}" ]]; then
 fi
 
 # Reconstruct the high-definition transparent logo from small text chunks.
-# Keeping the chunks in the repository avoids binary upload corruption while
-# still producing a normal PNG before Vinext bundles the public assets.
+# Use a versioned filename so the production workers.dev hostname cannot reuse
+# an older cached logo asset from previous deployments.
 logo_chunks_dir="${SITES_PROJECT_ROOT}/public/assets/logo-hq-chunks"
-logo_target="${SITES_PROJECT_ROOT}/public/assets/fm-academy-logo.png"
+logo_target="${SITES_PROJECT_ROOT}/public/assets/fm-academy-logo-v2.png"
 if [[ -d "${logo_chunks_dir}" ]]; then
   command -v base64 || {
     echo "base64 is required to reconstruct the FM Academy logo." >&2
@@ -38,7 +38,15 @@ if [[ -d "${logo_chunks_dir}" ]]; then
   fi
 
   mv "${logo_tmp}" "${logo_target}"
-  echo "[sites] reconstructed high-definition FM Academy logo"
+
+  # Update logo references only in the disposable Cloudflare build checkout.
+  # Source content/design stays untouched while the deployed HTML receives a
+  # fresh asset URL, which prevents stale production-host caching.
+  sed -i 's#/assets/fm-academy-logo\.png#/assets/fm-academy-logo-v2.png#g' \
+    "${SITES_PROJECT_ROOT}/app/page.tsx" \
+    "${SITES_PROJECT_ROOT}/app/links/page.tsx"
+
+  echo "[sites] reconstructed high-definition FM Academy logo with cache-busted URL"
 fi
 
 # tw-animate-css is optional for this site, but its package import can fail to
