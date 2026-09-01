@@ -18,6 +18,29 @@ if [[ ! -x "${vinext}" ]]; then
   exit 69
 fi
 
+# Reconstruct the high-definition transparent logo from small text chunks.
+# Keeping the chunks in the repository avoids binary upload corruption while
+# still producing a normal PNG before Vinext bundles the public assets.
+logo_chunks_dir="${SITES_PROJECT_ROOT}/public/assets/logo-hq-chunks"
+logo_target="${SITES_PROJECT_ROOT}/public/assets/fm-academy-logo.png"
+if [[ -d "${logo_chunks_dir}" ]]; then
+  command -v base64 || {
+    echo "base64 is required to reconstruct the FM Academy logo." >&2
+    exit 69
+  }
+
+  logo_tmp="${SITES_RUNTIME_ROOT}/fm-academy-logo-hq.png"
+  cat "${logo_chunks_dir}"/chunk_*.b64 | base64 -d > "${logo_tmp}"
+
+  if [[ ! -s "${logo_tmp}" ]]; then
+    echo "Failed to reconstruct the FM Academy logo." >&2
+    exit 69
+  fi
+
+  mv "${logo_tmp}" "${logo_target}"
+  echo "[sites] reconstructed high-definition FM Academy logo"
+fi
+
 # tw-animate-css is optional for this site, but its package import can fail to
 # resolve in the Cloudflare/Vinext build environment. Remove only that import
 # from the disposable CI checkout before compiling; the rest of globals.css is
