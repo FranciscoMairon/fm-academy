@@ -47,6 +47,45 @@
   clip-path: none !important;
 }
 
+/* Remove the decorative split backgrounds that become visible as vertical
+   seams on mobile and keep each section on one continuous background. */
+.mentorship-section {
+  background: var(--background) !important;
+}
+
+.mentorship-business {
+  background: #080808 !important;
+}
+
+/* The intro used a hard background split plus a large decorative "FM".
+   On narrow screens both elements look like layout errors, so keep this
+   section clean and continuous. */
+.section-intro {
+  overflow: hidden;
+  background: var(--background) !important;
+}
+
+.section-intro::after {
+  content: none !important;
+  display: none !important;
+}
+
+.intro-grid,
+.section-heading,
+.intro-copy,
+.signature-line {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.signature-line small {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.55;
+}
+
 @media (max-width: 680px) {
   .nav-brand img {
     width: 50px !important;
@@ -56,5 +95,20 @@
   .bio-logo-wrap {
     width: 116px;
     height: 116px;
+  }
+
+  /* Keep the long opening headline inside the viewport. */
+  .section-intro .section-heading h2 {
+    max-width: 100%;
+    font-size: clamp(2.35rem, 10.5vw, 3.2rem) !important;
+    overflow-wrap: normal;
+  }
+
+  .signature-line {
+    padding-right: 12px;
+  }
+
+  .signature-line small {
+    letter-spacing: 0.07em;
   }
 }
