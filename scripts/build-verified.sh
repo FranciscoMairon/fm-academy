@@ -29,7 +29,7 @@ if [[ -d "${logo_chunks_dir}" ]]; then
     exit 69
   }
 
-  logo_tmp="${SITES_RUNTIME_ROOT}/fm-academy-logo-hq.png"
+  logo_tmp="${TMPDIR}/fm-academy-logo-hq.png"
   cat "${logo_chunks_dir}"/chunk_*.b64 | base64 -d > "${logo_tmp}"
 
   if [[ ! -s "${logo_tmp}" ]]; then
