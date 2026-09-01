@@ -1,0 +1,23 @@
+.nav-brand img {
+  object-fit: contain !important;
+  object-position: center;
+  padding: 3px;
+  background: #050505;
+}
+
+.footer-brand img {
+  object-fit: contain !important;
+  object-position: center;
+  padding: 3px;
+  background: #050505;
+}
+
+.bio-logo-wrap img {
+  width: 88%;
+  height: 88%;
+  margin: 6% auto;
+  object-fit: contain !important;
+  object-position: center;
+  border-radius: 0;
+  background: transparent;
+}
