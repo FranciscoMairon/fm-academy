@@ -78,7 +78,7 @@ export default function LinksPage() {
           <Reveal delay={240}>
             <a className="bio-link bio-link-whatsapp" href={generalUrl} target="_blank" rel="noreferrer">
               <span className="bio-link-icon"><MessageCircle size={22} /></span>
-              <span className="bio-link-copy"><small>Atendimento direto</small><strong>Falar com Francisco no WhatsApp</strong></span>
+              <span className="bio-link-copy"><small>Atendimento direto</small><strong>Falar com Mairon no WhatsApp</strong></span>
               <ArrowUpRight size={21} aria-hidden="true" />
             </a>
           </Reveal>
