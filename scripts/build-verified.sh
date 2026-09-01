@@ -18,6 +18,16 @@ if [[ ! -x "${vinext}" ]]; then
   exit 69
 fi
 
+# tw-animate-css is optional for this site, but its package import can fail to
+# resolve in the Cloudflare/Vinext build environment. Remove only that import
+# from the disposable CI checkout before compiling; the rest of globals.css is
+# left untouched.
+globals_css="${SITES_PROJECT_ROOT}/app/globals.css"
+if grep -Fqx '@import "tw-animate-css";' "${globals_css}"; then
+  echo "[sites] removing optional tw-animate-css import for Cloudflare build compatibility"
+  sed -i '/^@import "tw-animate-css";$/d' "${globals_css}"
+fi
+
 echo "Running bounded vinext build..."
 timeout \
   --signal=TERM \
