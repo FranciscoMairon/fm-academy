@@ -104,6 +104,12 @@
     overflow-wrap: normal;
   }
 
+  /* Reserve clear space below the intro copy so the fixed WhatsApp button
+     never covers the final sentence when the next section enters the screen. */
+  .section-intro {
+    padding-bottom: 160px !important;
+  }
+
   .signature-line {
     padding-right: 12px;
   }
