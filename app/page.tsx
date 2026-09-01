@@ -113,7 +113,7 @@ export default function Home() {
               </a>
               <a className="button button-outline" href={generalUrl} target="_blank" rel="noreferrer">
                 <MessageCircle size={18} aria-hidden="true" />
-                Falar com Francisco
+                Falar com Mairon
               </a>
             </div>
             <div className="hero-metrics" aria-label="Destaques da trajetória">
